@@ -95,7 +95,9 @@ async function autoPlay () {
     }
   }
 
-  validCells.sort((a, b) => b.point - a.point)[0].cell.click();
+  // ランダムに置かせるように変更
+  validCells[(Math.random() * validCells.length) | 0].cell.click();
+  // validCells.sort((a, b) => b.point - a.point)[0].cell.click();
 }
 
 function createCell (rowIndex, columnIndex) {
