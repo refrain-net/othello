@@ -17,6 +17,7 @@ const database = getDatabase();
 const automode = document.querySelector('#automode');
 const npcmode = document.querySelector('#npcmode');
 const interval = document.querySelector('#interval');
+const reset = document.querySelector('#reset');
 const board = document.querySelector('#board');
 const log = document.querySelector('#log');
 
@@ -55,7 +56,15 @@ let milliseconds = 100;
 let isAutoMode = false;
 let isNPCMode = false;
 
+init();
 main();
+
+function init () {
+  automode.addEventListener('change', onChange, false);
+  npcmode.addEventListener('change', onChange, false);
+  interval.addEventListener('change', onChange, false);
+  reset.addEventListener('change', event => main(true), false);
+}
 
 function main (reload = false) {
   if (!reload &&!confirm(`このゲームでは、ゲームの終了時に以下の情報をサーバーへアップロードします。
@@ -71,10 +80,6 @@ function main (reload = false) {
   turn = !location.search.includes('reverse');
 
   initBoard();
-
-  automode.addEventListener('change', onChange, false);
-  npcmode.addEventListener('change', onChange, false);
-  interval.addEventListener('change', onChange, false);
 }
 
 async function autoPlay () {
