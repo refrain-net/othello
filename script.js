@@ -63,7 +63,7 @@ function init () {
   automode.addEventListener('change', onChange, false);
   npcmode.addEventListener('change', onChange, false);
   interval.addEventListener('change', onChange, false);
-  reset.addEventListener('change', event => main(true), false);
+  reset.addEventListener('click', event => main(true), false);
 }
 
 function main (reload = false) {
