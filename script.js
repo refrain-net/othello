@@ -55,15 +55,17 @@ let milliseconds = 100;
 let isAutoMode = false;
 let isNPCMode = false;
 
-(function main () {
-  if (!confirm('このゲームでは、ゲームの終了時に以下の情報をサーバーへアップロードします。\n' +
-               '・ゲームの結果\n' +
-               '・ゲーム終了時点での、各プレイヤーのセルの数\n' +
-               '・セルがどの順序で配置されたかの履歴\n' +
-               '情報のアップロードに同意する場合は「OK」を選択してください。')) {
-    return confirm('情報のアップロードが許可されませんでした。\n' +
-                   '初期化処理は実行されず、ゲームは動作しません。\n' +
-                   '選択しなおしますか？') ? main() : alert('選択しなおす場合は、ページを再読み込みしてください。');
+main();
+
+function main (reload = false) {
+  if (!reload &&!confirm(`このゲームでは、ゲームの終了時に以下の情報をサーバーへアップロードします。
+・ゲームの結果
+・ゲーム終了時点での、各プレイヤーのセルの数
+・セルがどの順序で配置されたかの履歴
+情報のアップロードに同意する場合は「OK」を選択してください。`)) {
+    return confirm(`情報のアップロードが許可されませんでした。
+初期化処理は実行されず、ゲームは動作しません。
+選択しなおしますか？`)? main(): alert('選択しなおす場合は、ページを再読み込みしてください。');
   }
 
   turn = !location.search.includes('reverse');
@@ -73,7 +75,7 @@ let isNPCMode = false;
   automode.addEventListener('change', onChange, false);
   npcmode.addEventListener('change', onChange, false);
   interval.addEventListener('change', onChange, false);
-})();
+}
 
 async function autoPlay () {
   await sleep(milliseconds);
