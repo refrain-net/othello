@@ -102,7 +102,9 @@ async function autoPlay () {
     }
   }
 
-  // ランダムに置かせるように変更
+  // 最も得点の高い範囲でランダムに置かせるように変更
+  const max_point = validCells.sort((a, b) => b.point - a.point)[0].point;
+  validCells = validCells.filter(cell => cell.point === max_point);
   validCells[(Math.random() * validCells.length) | 0].cell.click();
   // validCells.sort((a, b) => b.point - a.point)[0].cell.click();
 }
