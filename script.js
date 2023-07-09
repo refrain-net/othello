@@ -128,8 +128,8 @@ function createCell (rowIndex, columnIndex) {
 
 function finish () {
   const cells = CURRENT_BOARD.flat();
-  const black = cells.filter(cell => cell.status === turn).length;
-  const white = cells.filter(cell => cell.status !== turn).length;
+  const black = cells.filter(cell => cell.status).length;
+  const white = cells.filter(cell => !cell.status).length;
 
   printLog(`黒: ${black}`, `白: ${white}`);
 
